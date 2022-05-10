@@ -2,16 +2,23 @@ version: "3"
 
 services:
   postgres-compose:
-    image: postgres
     container_name: postgres
-    environment:
-      POSTGRES_PASSWORD: "postgresql"
-    ports:
-      - "5440:5432"
+    image: phdcoder/postgresbr
+    restart: always
     volumes:
-      - postgresql:/var/lib/postgresql/data
+      - postgresql:/var/lib/postgresql/data/pgdata
+      - ./initdb:/docker-entrypoint-initdb.d
+    environment:
+        POSTGRES_USER: app
+        POSTGRES_DB: easysell
+        POSTGRES_PASSWORD: app2022
+        PGDATA: /var/lib/postgresql/data/pgdata
+        LANG: pt_BR.utf8
+    ports:
+       - "5434:5432"
     networks:
       - postgresql
+
 
   pgadmin-compose:
     image: dpage/pgadmin4
@@ -25,7 +32,14 @@ services:
       - postgres-compose
     networks:
       - postgresql
-
+#  spring:
+#    image: openjdk
+#    container_name: springjdk
+#    ports:
+#      - 8080:8080
+#    entrypoint: ["java","-jar","/app/app.jar"]
+#    depends_on:
+#      - postgres-compose
 networks:
   postgresql:
     driver: bridge
