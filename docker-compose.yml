@@ -1,49 +1,30 @@
-version: "3"
+version: '3.5'
 
 services:
-  postgres-compose:
+  db:
     container_name: postgres
     image: phdcoder/postgresbr
     restart: always
     volumes:
-      - postgresql:/var/lib/postgresql/data/pgdata
+      - base_cliente:/var/lib/postgresql/data/pgdata
       - ./initdb:/docker-entrypoint-initdb.d
     environment:
-        POSTGRES_USER: app
-        POSTGRES_DB: easysell
-        POSTGRES_PASSWORD: app2022
-        PGDATA: /var/lib/postgresql/data/pgdata
-        LANG: pt_BR.utf8
+      POSTGRES_USER: admin
+      POSTGRES_DB: easysell
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
+      LANG: pt_BR.utf8
     ports:
-       - "5434:5432"
-    networks:
-      - postgresql
+      - "5455:5432"
 
-
-  pgadmin-compose:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "exemple@exemple.com"
-      PGADMIN_DEFAULT_PASSWORD: "melancia"
+  app:
+    container_name: spring
+    build: .
     ports:
-      - "15432:80"
+      - "8080:8080"
     depends_on:
-      - postgres-compose
-    networks:
-      - postgresql
-#  spring:
-#    image: openjdk
-#    container_name: springjdk
-#    ports:
-#      - 8080:8080
-#    entrypoint: ["java","-jar","/app/app.jar"]
-#    depends_on:
-#      - postgres-compose
-networks:
-  postgresql:
-    driver: bridge
+      - db
 
 volumes:
-  postgresql:
+  base_cliente:
     external: true
