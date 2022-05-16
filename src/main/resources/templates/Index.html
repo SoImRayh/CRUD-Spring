@@ -8,24 +8,25 @@
     <title>HelloWorld</title>
 </head>
 <body>
-<div class="d-flex flex-row mb-3">
+<div class="sticky-lg-bottom text-center">
+    <h1>Escolha qual sistema deseja entrar</h1>
+    <a th:href="@{/agencia}"><button class="btn btn-primary"> Agencias</button></a>
+    <a th:href="@{/banco}"><button class="btn btn-primary">Bancos</button> </a>
+</div>
+<div class="row">
+    <h1 class="text-center">enquanto isso fique com boa musica e arte conteporânea!</h1>
+</div>
+<div class="d-flex">
     <div class="p-2">
-        <img src="../static/images/lulu.jpeg" width="100%"
+        <img src="../static/images/lulu.jpeg" width="50%"
             th:src="@{/images/lulu.jpeg}">
     </div>
-    <div class="container conta">
-        <h1 class="text text-center"> já volto<br>fiquem com a famosa lulu de lambreta a drift queen<br>
-        só de rhangângân, destruidora de pnels pirelli, dona do feito de colocar 130km/h em sua lambreta
-            <br>vrum vrum</h1>
-    </div>
+
      <div>
          <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player"
                  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                  allowfullscreen></iframe>
      </div>
-    <div>
-        <a th:href="@{/agencia}"><button class="btn btn-primary"> Agencias</button></a>
-        <a th:href="@{/banco}"><button class="btn btn-primary">Bancos</button> </a>
-    </div>
+</div>
 </body>
 </html>

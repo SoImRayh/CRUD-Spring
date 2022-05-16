@@ -1,5 +1,6 @@
 package com.ifg.spring.controllers;
 
+import com.ifg.spring.dto.RequisicaoBanco;
 import com.ifg.spring.model.Banco;
 import com.ifg.spring.model.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.UnexpectedTypeException;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/banco")
@@ -37,14 +40,17 @@ public class BancoController {
         return modelAndView;
     }
     @PostMapping("/novo")
-    public String salvar(@Valid Banco banco, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ModelAndView salvar(RequisicaoBanco requisicaoBanco, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult);
 
-            return "redirect:/banco/novo";
+            return new ModelAndView("redirect:/banco/novo");
         }
-        this.bancoRepository.save(banco);
-        return "redirect:/banco";
+
+        this.bancoRepository.save(requisicaoBanco.toBanco());
+        return new ModelAndView("redirect:/banco");
     }
+
 
     @GetMapping("/editar")
     public String editar(){
@@ -60,6 +66,50 @@ public class BancoController {
         }catch (EmptyResultDataAccessException e){
             return "redirect:/banco";
         }
+    }
+    @GetMapping("/{id}")
+    public ModelAndView show(@PathVariable Integer id){
+        Optional<Banco>  optional = this.bancoRepository.findById(id);
 
+        if(optional.isPresent()){
+            Banco banco = optional.get();
+            ModelAndView modelAndView = new ModelAndView("banco/show");
+            modelAndView.addObject("banco", banco );
+            return modelAndView;
+        }else{
+            return  new ModelAndView("redirect:/banco");
+        }
+    }
+    @GetMapping("/update/{id}")
+    public ModelAndView update(@PathVariable Integer id, RequisicaoBanco requisicaoBanco,BindingResult bindingResult){
+        Optional<Banco> optional = this.bancoRepository.findById(id);
+
+        if(optional.isPresent()) {
+            requisicaoBanco.fromBanco(optional.get());
+
+            ModelAndView modelAndView = new ModelAndView("banco/update");
+            modelAndView.addObject("requisicaoNovoBanco", requisicaoBanco);
+            modelAndView.addObject("bancoId",optional.orElseThrow().getId());
+            return modelAndView;
+        }else{
+            return new ModelAndView("redirect:/banco");
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public ModelAndView update(@PathVariable Integer id, RequisicaoBanco requisicaoBanco){
+        Optional<Banco> optional = this.bancoRepository.findById(id);
+        if(optional.isPresent()){
+            try {
+                Banco banco = optional.get();
+                requisicaoBanco.toBanco(banco);
+                this.bancoRepository.save(banco);
+                return new ModelAndView("redirect:/banco");
+            }catch (UnexpectedTypeException e){
+                return new ModelAndView("redirect:/banco");
+            }
+        }else{
+            return new ModelAndView("redirect:/banco");
+        }
     }
 }

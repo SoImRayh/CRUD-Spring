@@ -12,12 +12,17 @@
     <!--        <img src="../static/images/lulu.jpeg" width="1280"-->
     <!--            th:src="@{images/lulu.jpeg}">-->
 </div>
+<div>
+    <a href="/banco/novo"><button class="btn btn-info btn-lg">Novo</button></a>
+    <a th:href="@{/}"><button class="btn btn-primary">Inicio</button></a>
+</div>
+
 <div class="container container-sm" style="margin: 10px">
     <div class="row">
         <div class="panel-heading text-center">
             <h1 class="panel-title">Lista de bancos</h1>
         </div>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar overflow-scroll" >
             <table class="table table-bordered table-striped mb-0">
                 <thead>
                 <th>ID</th>
@@ -29,9 +34,13 @@
                     <td th:text="${banco.id}"></td>
                     <td th:text="${banco.getNome()}"></td>
                     <td th:text="${banco.getNumero()}"></td>
-                    <td><a><button class="btn btn-primary">Editar</button> </a></td>
+                    <td><a th:href="@{/banco/{bancoId}/(bancoId = ${banco.id})}">
+                        <button class="btn btn-primary btn-sm">detalhes</button>
+                    </a></td>
+                    <td><a th:href="@{/banco/update/{bancoId}(bancoId = ${banco.id})}">
+                        <button class="btn btn-primary btn-sm">Editar</button> </a></td>
                     <td><a th:href="@{/banco/{bancoId}/delete(bancoId = ${banco.id})}">
-                        <button class="btn btn-primary">Excluir</button>
+                        <button class="btn btn-primary btn-sm">Excluir</button>
                     </a></td>
                 </tr>
                 </tbody>
@@ -39,9 +48,6 @@
         </div>
     </div>
 </div>
-<div>
-    <a href="/banco/novo"><button class="btn btn-info btn-lg">Novo</button></a>
-</div>
-<button class="btn btn-primary">aaa</button>
+
 </body>
 </html>

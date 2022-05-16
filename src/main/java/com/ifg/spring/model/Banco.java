@@ -2,13 +2,11 @@ package com.ifg.spring.model;
 
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.NotFound;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -19,7 +17,7 @@ public class Banco {
     @NotNull
     @NotBlank
     private String nome;
-    @NotNull
+
     @NotBlank
     private String numero;
 

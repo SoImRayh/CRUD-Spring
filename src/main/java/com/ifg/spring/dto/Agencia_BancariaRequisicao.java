@@ -1,28 +1,24 @@
-package com.ifg.spring.model;
+package com.ifg.spring.dto;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import com.ifg.spring.model.Agencia_bancaria;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.math.BigInteger;
 
-@Entity
-public class Agencia_bancaria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Agencia_BancariaRequisicao {
+
 
     private Integer id_banco;
-
     @NotBlank
     @NotNull
     private String endereco;
 
-
+    @Size(min = 9,max = 9)
     private BigInteger fone;
 
     @Min(0)
@@ -35,46 +31,6 @@ public class Agencia_bancaria {
     @NonNull
     private String nome_agencia;
 
-    public Agencia_bancaria() {
-
-    }
-    public Agencia_bancaria(Integer id_banco, @NonNull String endereco, BigInteger fone, Integer tipo, BigInteger fon1, Integer tipo1,
-                            String agencia, @NonNull String nome_agencia) {
-        this.id_banco = id_banco;
-        this.endereco = endereco;
-        this.fone = fone;
-        this.tipo = tipo;
-        this.fon1 = fon1;
-        this.tipo1 = tipo1;
-        this.agencia = agencia;
-        this.nome_agencia = nome_agencia;
-    }
-
-    public Agencia_bancaria(Integer id_banco, @NonNull String endereco, BigInteger fone, Integer tipo, String agencia, @NonNull String nome_agencia) {
-        this.id_banco = id_banco;
-        this.endereco = endereco;
-        this.fone = fone;
-        this.tipo = tipo;
-        this.agencia = agencia;
-        this.nome_agencia = nome_agencia;
-    }
-
-    public Agencia_bancaria(Integer id_banco, @NonNull String endereco, String agencia, @NonNull String nome_agencia) {
-        this.id_banco = id_banco;
-        this.endereco = endereco;
-        this.agencia = agencia;
-        this.nome_agencia = nome_agencia;
-    }
-
-    @NonNull
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(@NonNull Integer id) {
-        this.id = id;
-    }
-
     public Integer getId_banco() {
         return id_banco;
     }
@@ -83,12 +39,11 @@ public class Agencia_bancaria {
         this.id_banco = id_banco;
     }
 
-    @NonNull
     public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(@NonNull String endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
@@ -139,5 +94,33 @@ public class Agencia_bancaria {
 
     public void setNome_agencia(@NonNull String nome_agencia) {
         this.nome_agencia = nome_agencia;
+    }
+
+    public Agencia_bancaria toAgencia_bancaria(){
+        return new Agencia_bancaria(
+                this.id_banco,
+                this.endereco,
+                this.fone, this.tipo,
+                this.fon1, this.tipo1,
+                this.agencia,
+                this.nome_agencia);
+    }
+    public Agencia_bancaria toAgencia_bancaria(Agencia_bancaria agencia_bancaria){
+        agencia_bancaria.setId_banco(this.id_banco);
+        agencia_bancaria.setEndereco(this.endereco);
+        agencia_bancaria.setFone(this.fone); agencia_bancaria.setTipo(this.tipo);
+        agencia_bancaria.setFon1(this.fon1); agencia_bancaria.setTipo1(this.tipo1);
+        agencia_bancaria.setAgencia(this.agencia);
+        agencia_bancaria.setNome_agencia(this.nome_agencia);
+        return agencia_bancaria;
+    }
+    public void fromAgencia_bancaria(Agencia_bancaria a){
+        this.id_banco = a.getId_banco();
+        this.endereco = a.getEndereco();
+        this.fone = a.getFone();
+        this.tipo = a.getTipo();
+        this.fon1 = a.getFon1();
+        this.agencia = a.getAgencia();
+        this.nome_agencia = a.getNome_agencia();
     }
 }

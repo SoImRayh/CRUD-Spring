@@ -8,6 +8,9 @@
     <title>novo</title>
 </head>
 <body>
+<a th:href="@{/banco}"><button class="btn btn-primary btn-sm">voltar</button> </a>
+
+<h1>Cadastrar novo Banco</h1>
 <form class="form-inline" method="post" style="margin: 20px" th:object="${banco}" th:action="@{/banco/novo}">
     <div class="form-group">
         <input type="text" class="form-control" placeholder="nome" th:field="*{nome}"/>
