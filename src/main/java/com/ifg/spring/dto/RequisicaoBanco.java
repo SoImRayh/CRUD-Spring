@@ -13,6 +13,11 @@ public class RequisicaoBanco {
     @NotBlank
     private String numero;
 
+    public RequisicaoBanco(String nome, String numero) {
+        this.nome = nome;
+        this.numero = numero;
+    }
+
     public String getNome() {
         return nome;
     }
