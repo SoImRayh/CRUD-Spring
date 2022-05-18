@@ -9,16 +9,52 @@
 </head>
     <body>
         <form class="form-inline" method="post" style="margin: 20px" th:object="${agencia_bancaria}" th:action="@{/agencia/novo}">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="banco ID" th:field="*{id_banco}"/>
-                <input type="text" class="form-control" placeholder="endereço" th:field="*{endereco}"/>
-                <input type="text" class="form-control" placeholder="fone" th:field="*{fone}"/>
-                <input type="text" class="form-control" placeholder="tipo" th:field="*{tipo}"/>
-                <input type="text" class="form-control" placeholder="fone1" th:field="*{fon1}"/>
-                <input type="text" class="form-control" placeholder="tipo1" th:field="*{fon1}"/>
-                <input type="text" class="form-control" placeholder="Agencia" th:field="*{agencia}"/>
-                <input type="text" class="form-control" placeholder="numero" th:field="*{nome_agencia}"/>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+            <div class="d-flex flex-row">
+                <div class="form-group">
+                    <label for="inputBanco" class="text-secondary">id do banco:</label>
+                    <input  type="text" class="form-control" id="inputBanco" placeholder="banco ID" th:field="*{id_banco}"/>
+                </div>
+                <div class="form-group mx-5">
+                    <label for="inputEndereco" class="text-secondary">Endereço</label>
+                    <input style="width: 550px" type="text" id="inputEndereco" class="form-control" placeholder="endereço" th:field="*{endereco}"/>
+                </div>
             </div>
-        </body>
+            <div class="d-flex flex-row">
+                <div class="form-group ">
+                    <label for="inputTelefone" class="text-secondary">Telefone</label>
+                    <input type="text" id="inputTelefone" class="form-control" placeholder="fone" th:field="*{fone}"/>
+                </div>
+                <div class="form-group mx-5">
+                    <label for="inputTipoTelefone" class="text-secondary">Tipo</label>
+                    <input type="text" id="inputTipoTelefone" class="form-control" placeholder="tipo" th:field="*{tipo}"/>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <div class="form-group">
+                    <label for="inputTelefoneContato" class="text-secondary">Telefone para contato:</label>
+                    <input type="text" id="inputTelefoneContato" class="form-control" placeholder="fone1" th:field="*{fon1}"/>
+                </div>
+                <div class="mx-5">
+                    <label for="inputTelefoneContatoTipo" class="text-secondary ">tipo</label>
+                    <input type="text" id="inputTelefoneContatoTipo" class="form-control" placeholder="tipo1" th:field="*{fon1}"/>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+            <div class="form-group">
+                <labe for="inputAgencia" class="text-secondary">Agência</labe>
+                <input type="text" class="form-control" placeholder="Agencia" th:field="*{agencia}"/>
+            </div>
+            <div class="form-group mx-5">
+                <label for="inputnumeroAgencia" class="text-secondary">Numero da Agencia</label>
+                <input type="text" id="inputnumeroAgencia" class="form-control" placeholder="numero" th:field="*{nome_agencia}"/>
+
+            </div>
+                </div>
+            <div class="mx-auto">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+
+        </form>
+    </body>
 </html>

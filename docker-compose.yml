@@ -9,9 +9,9 @@ services:
       - base_cliente:/var/lib/postgresql/data/pgdata
       - ./initdb:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_USER: admin
+      POSTGRES_USER: app
       POSTGRES_DB: easysell
-      POSTGRES_PASSWORD: admin
+      POSTGRES_PASSWORD: app2022
       PGDATA: /var/lib/postgresql/data/pgdata
       LANG: pt_BR.utf8
     ports:
