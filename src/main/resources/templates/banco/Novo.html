@@ -13,11 +13,9 @@
 <h1>Cadastrar novo Banco</h1>
 <form class="form-inline" method="post" style="margin: 20px" th:object="${banco}" th:action="@{/banco/novo}">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="nome" th:field="*{nome}"
-               th:class="${#fields.hasErrors('nome')}? fieldError"/>
-        <input type="text" class="form-control" placeholder="numero" th:field="*{numero}"
-               th:class="${#fields.hasErrors('numero')}? fieldError" />
-        <p th:if="${#fields.hasErrors(numero)}" th:errors="*{numero}">precisa de nuemro meu chegado</p>
+        <input type="text" class="form-control" placeholder="nome" th:field="*{nome}"/>
+        <input type="text" class="form-control" placeholder="numero" th:field="*{numero}"/>
+        <p>precisa de nuemro meu chegado</p>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>

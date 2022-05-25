@@ -29,7 +29,7 @@ public class BancoController {
     public ModelAndView banco(){
 
         ModelAndView mv = new ModelAndView("banco/Banco");
-        mv.addObject("bancos", this.bancoRepository.findAll());
+        mv.addObject("bancos",this.bancoRepository.findAll());
         return mv;
     }
 

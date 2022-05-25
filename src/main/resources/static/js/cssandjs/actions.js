@@ -1,0 +1,4 @@
+
+function showAlert(){
+    alert('simbora');
+}

@@ -6,11 +6,28 @@
           crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>HelloWorld</title>
+    <link rel="stylesheet" href="../../static/styles/css/style.css">
 </head>
 <body>
-    <a th:href="@{/banco}"><button class="btn btn-primary">Voltar</button> </a>
-    <h1 th:text="${banco.getId()}"></h1>
-    <h2 th:text="${banco.getNome()}"></h2>
-    <h2 th:text="${banco.getNumero()}"></h2>
+<div class="d-flex">
+    <div class="d-flex justify-content-between">
+    <h1 class="">detalhes do banco</h1>
+    <table class="table text-center table-dark justify-content-between">
+        <tr>
+            <th colspan="2" th:text="${banco.getNome()}"></th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <td th:text="${banco.getId()}"></td>
+        </tr>
+        <tr>
+            <th>Número</th>
+            <td th:text="${banco.getNumero()}"></td>
+        </tr>
+    </table>
+    </div>
+
+</div>
+<a th:href="@{/banco}"><button class="btn btn-primary" type="button">Voltar</button> </a>
 </body>
 </html>
