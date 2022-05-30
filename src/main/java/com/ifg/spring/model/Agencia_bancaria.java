@@ -50,6 +50,15 @@ public class Agencia_bancaria {
         this.nome_agencia = nome_agencia;
     }
 
+    public Agencia_bancaria( Integer id_banco, String endereco, BigInteger fone, BigInteger fon1, String agencia, @NonNull String nome_agencia) {
+        this.id_banco = id_banco;
+        this.endereco = endereco;
+        this.fone = fone;
+        this.fon1 = fon1;
+        this.agencia = agencia;
+        this.nome_agencia = nome_agencia;
+    }
+
     public Agencia_bancaria(Integer id_banco, @NonNull String endereco, BigInteger fone, Integer tipo, String agencia, @NonNull String nome_agencia) {
         this.id_banco = id_banco;
         this.endereco = endereco;

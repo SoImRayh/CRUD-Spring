@@ -5,16 +5,16 @@ import com.ifg.spring.model.Banco;
 import com.ifg.spring.model.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.UnexpectedTypeException;
-import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -26,11 +26,15 @@ public class BancoController {
 
 
     @GetMapping("")
-    public ModelAndView banco(){
-
-        ModelAndView mv = new ModelAndView("banco/Banco");
-        mv.addObject("bancos",this.bancoRepository.findAll());
-        return mv;
+    public ModelAndView banco(Pageable pageable,
+                              @RequestParam("page") Optional<Integer> page,
+                              @RequestParam("size") Optional<Integer> size){
+        int currentPage = page.get();
+        int pageSize = size.orElse(10) ;
+        ModelAndView modelAndView = new ModelAndView("/banco/Banco");
+        Page<Banco> bancoPage = this.bancoRepository.findAll(PageRequest.of(currentPage+1 , pageSize));
+        modelAndView.addObject("bancos",bancoPage);
+        return modelAndView;
     }
 
     @GetMapping("/novo")

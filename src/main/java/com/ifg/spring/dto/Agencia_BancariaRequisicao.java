@@ -1,6 +1,7 @@
 package com.ifg.spring.dto;
 
 import com.ifg.spring.model.Agencia_bancaria;
+import com.ifg.spring.model.Tipo;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.ForeignKey;
@@ -21,11 +22,9 @@ public class Agencia_BancariaRequisicao {
     @Size(min = 9,max = 9)
     private BigInteger fone;
 
-    @Min(0)
-    @Max(1)
-    private Integer tipo;
+    private Tipo tipo;
     private BigInteger fon1;
-    private Integer tipo1;
+    private Tipo tipo1;
     private String agencia;
     @NotBlank
     @NonNull
@@ -55,11 +54,12 @@ public class Agencia_BancariaRequisicao {
         this.fone = fone;
     }
 
-    public Integer getTipo() {
+    public Enum<Tipo> getTipo() {
         return tipo;
     }
 
-    public void setTipo(Integer tipo) {
+    public void setTipo(Tipo tipo) {
+
         this.tipo = tipo;
     }
 
@@ -71,11 +71,11 @@ public class Agencia_BancariaRequisicao {
         this.fon1 = fon1;
     }
 
-    public Integer getTipo1() {
+    public Tipo getTipo1() {
         return tipo1;
     }
 
-    public void setTipo1(Integer tipo1) {
+    public void setTipo1(Tipo tipo1) {
         this.tipo1 = tipo1;
     }
 
@@ -97,30 +97,58 @@ public class Agencia_BancariaRequisicao {
     }
 
     public Agencia_bancaria toAgencia_bancaria(){
-        return new Agencia_bancaria(
+        Agencia_bancaria a = new Agencia_bancaria(
                 this.id_banco,
                 this.endereco,
-                this.fone, this.tipo,
-                this.fon1, this.tipo1,
-                this.agencia,
-                this.nome_agencia);
+                this.fone,this.fon1,
+                this.agencia,this.nome_agencia);
+
+        if (this.tipo == Tipo.FIXO){
+            a.setTipo(1);
+        }else{
+            a.setTipo(0);
+        }
+        if (this.tipo1 == Tipo.FIXO){
+            a.setTipo(1);
+        }else{
+            a.setTipo(0);
+        }
+        return a;
     }
     public Agencia_bancaria toAgencia_bancaria(Agencia_bancaria agencia_bancaria){
         agencia_bancaria.setId_banco(this.id_banco);
         agencia_bancaria.setEndereco(this.endereco);
-        agencia_bancaria.setFone(this.fone); agencia_bancaria.setTipo(this.tipo);
-        agencia_bancaria.setFon1(this.fon1); agencia_bancaria.setTipo1(this.tipo1);
+        agencia_bancaria.setFone(this.fone);
+        agencia_bancaria.setFon1(this.fon1);
         agencia_bancaria.setAgencia(this.agencia);
         agencia_bancaria.setNome_agencia(this.nome_agencia);
+        if (this.tipo == Tipo.FIXO)
+            agencia_bancaria.setTipo(1);
+        else{
+            agencia_bancaria.setTipo(0);
+        }
+        if(this.tipo1 == Tipo.FIXO)
+            agencia_bancaria.setTipo1(1);
+        else
+            agencia_bancaria.setTipo1(0);
+
         return agencia_bancaria;
     }
     public void fromAgencia_bancaria(Agencia_bancaria a){
         this.id_banco = a.getId_banco();
         this.endereco = a.getEndereco();
         this.fone = a.getFone();
-        this.tipo = a.getTipo();
         this.fon1 = a.getFon1();
         this.agencia = a.getAgencia();
         this.nome_agencia = a.getNome_agencia();
+        if (a.getTipo() == 1)
+            this.tipo = Tipo.FIXO;
+        else
+            this.tipo = Tipo.MOVEL;
+
+        if (a.getTipo1() == 1)
+            this.tipo1 = Tipo.FIXO;
+        else
+            this.tipo1 = Tipo.MOVEL;
     }
 }

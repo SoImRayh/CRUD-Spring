@@ -8,6 +8,7 @@
     <title>HelloWorld</title>
 </head>
     <body>
+    <div class="sticky-top">
         <form class="form-inline" method="post" style="margin: 20px" th:object="${agencia_bancaria}" th:action="@{/agencia/novo}">
 
             <div class="d-flex flex-row">
@@ -48,13 +49,12 @@
             <div class="form-group mx-5">
                 <label for="inputnumeroAgencia" class="text-secondary">Numero da Agencia</label>
                 <input type="text" id="inputnumeroAgencia" class="form-control" placeholder="numero" th:field="*{nome_agencia}"/>
-
             </div>
                 </div>
-            <div class="mx-auto">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <div class="d-flex flex-row">
+            <button type="submit" class="btn btn-success ml-05">Cadastrar</button>
             </div>
-
         </form>
+    </div>
     </body>
 </html>
