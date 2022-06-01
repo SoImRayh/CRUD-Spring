@@ -29,10 +29,10 @@ public class BancoController {
     public ModelAndView banco(Pageable pageable,
                               @RequestParam("page") Optional<Integer> page,
                               @RequestParam("size") Optional<Integer> size){
-        int currentPage = page.get();
-        int pageSize = size.orElse(10) ;
+        int currentPage = page.orElse(0);
+        int pageSize = size.orElse(15) ;
         ModelAndView modelAndView = new ModelAndView("/banco/Banco");
-        Page<Banco> bancoPage = this.bancoRepository.findAll(PageRequest.of(currentPage+1 , pageSize));
+        Page<Banco> bancoPage = this.bancoRepository.findAll(PageRequest.of(currentPage , pageSize));
         modelAndView.addObject("bancos",bancoPage);
         return modelAndView;
     }

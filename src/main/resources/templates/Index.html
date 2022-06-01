@@ -1,56 +1,12 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" th:href="@{/styles/css/index.css}">
-    <link rel="stylesheet" href="../../static/styles/css/index.css">
+<head th:insert="/fragments/start :: startHeader">
+
     <meta charset="UTF-8">
     <title>RayhBank</title>
 </head>
 <body>
-<div class="sidebar">
-    <div class="logo-content">
-        <div class="logo">
-            <i class='bx bxl-xing'></i>
-            <div class="logo-name">Rayhbank</div>
-        </div>
-        <i class='bx bx-menu' id="btn"></i>
-    </div>
-    <ul class="nav_list">
-        <li>
-            <a th:href="@{/banco?page=0&size=10}">
-                <i class='bx bxs-bank' ></i>
-                <span class="links_name">bancos</span>
-            </a>
-            <span class="tooltip">Bancos</span>
-        </li>
-        <li>
-            <a th:href="@{/agencia}">
-                <i class='bx bxl-magento'></i>
-                <span class="links_name">Agencias</span>
-            </a>
-            <span class="tooltip">Agencias</span>
-        </li>
-    </ul>
-    <div class="profile-content">
-        <div class="profile">
-            <div class="profile-details">
-                <a href="#">
-                <i class='bx bxl-github'></i>
-                <div class="name">Rayh</div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
-
-    btn.onclick = function (){
-        sidebar.classList.toggle("active");
-    }
-</script>
+    <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'banco', linkTwo = 'agencia')"></sidebar>
 <div class="corpo">
 <div>
     <h1 class="text-center">enquanto isso arte contemporânea!</h1>
