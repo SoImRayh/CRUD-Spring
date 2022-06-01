@@ -9,7 +9,7 @@
 </head>
 <body>
 <a th:href="@{/banco}"><button class="btn btn-primary">voltar</button></a>
-    <div>
+    <div class="user-box">
         <form class="form-inline" method="post" style="margin: 20px" th:object="${requisicaoBanco}"
               th:action="@{/banco/update/{bancoId}(bancoId = ${bancoId})}" >
             <div class="form-group">

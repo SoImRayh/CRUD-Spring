@@ -61,11 +61,20 @@ body {
     color: #03e9f4;
     font-size: 12px;
 }
+.login-box .links_name a{
+    text-decoration: none;
+    color: #f1f1f1;
+
+}
+.login-box .links_name a i{
+    width: 20px;
+    height: 20px;
+}
 
 .login-box form a {
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 10px;
     color: #03e9f4;
     font-size: 16px;
     text-decoration: none;
@@ -76,15 +85,6 @@ body {
     letter-spacing: 4px
 }
 
-.login-box a:hover {
-    background: #03e9f4;
-    color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #03e9f4,
-    0 0 25px #03e9f4,
-    0 0 50px #03e9f4,
-    0 0 100px #03e9f4;
-}
 
 .login-box a span {
     position: absolute;
@@ -202,17 +202,7 @@ body {
     border-radius: 10px;
 }
 
-@keyframes glowing-button-85 {
-    0% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 400% 0;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
+
 
 .button-85:after {
     z-index: -1;

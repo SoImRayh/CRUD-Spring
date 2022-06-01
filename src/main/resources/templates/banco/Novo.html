@@ -2,12 +2,18 @@
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head >
     <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{/styles/css/forms.css}">
+    <link rel="stylesheet" th:href="@{/styles/css/components.css}">
     <title>novo</title>
 </head>
 <body>
-<a th:href="@{/banco (size = )}"><button class="btn btn-primary btn-sm">voltar</button> </a>
 <div class="login-box">
+    <div class="links_name">
+        <a th:href="@{/banco}">
+            <i class='bx bx-chevrons-left'></i>
+        </a>
+    </div>
 <h2>Cadastrar novo Banco</h2>
 <form class="form-inline" method="post" style="margin: 20px" th:object="${banco}" th:action="@{/banco/novo}">
     <div class="user-box">
@@ -16,8 +22,11 @@
     <div class="user-box">
         <input type="text" class="form-control" placeholder="numero" th:field="*{numero}"/>
     </div>
-        <button type="submit" class="button-85">Cadastrar</button>
-
+    <div>
+        <a>
+            <button type="submit" class="button-85">Cadastrar</button>
+        </a>
+    </div>
 </form>
 </div>
 </body>

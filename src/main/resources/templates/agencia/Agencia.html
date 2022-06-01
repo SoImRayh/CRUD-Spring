@@ -6,9 +6,22 @@
 </head>
 <body>
     <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index',linkTwo = 'banco')"></sidebar>
-<a th:href="@{/}"><button class="btn btn-primary btn-sm">Inicio</button> </a>
-<div >
-    <table class="table table-striped table-hover">
+    <div class="search-bar">
+        <div class="bar-element">
+            <input type="text" placeholder="filtrar">
+        </div>
+        <div class="bar-element">
+            <a href="#"><button class="custom-btn btn-16">filtrar</button> </a>
+        </div>
+        <div class="bar-element">
+            <a href="#"><button class="custom-btn btn-16">prox</button></a>
+        </div>
+        <div class="bar-element">
+            <a href="#"><button class="custom-btn btn-16">anterior</button> </a>
+        </div>
+    </div>
+<div class="div-table">
+    <table>
         <thead>
         <th>ID</th>
         <th>Agencia</th>
@@ -32,9 +45,6 @@
             </tr>
         </tbody>
     </table>
-</div>
-<div>
-    <a href="/agencia/novo"><button class="btn btn-primary">nova agencia</button></a>
 </div>
 </body>
 </html>
