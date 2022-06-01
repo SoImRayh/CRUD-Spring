@@ -24,7 +24,7 @@ public class BancoController {
     @Autowired
     private BancoRepository bancoRepository;
 
-
+    ///index /banco
     @GetMapping("")
     public ModelAndView banco(Pageable pageable,
                               @RequestParam("page") Optional<Integer> page,
@@ -36,13 +36,15 @@ public class BancoController {
         modelAndView.addObject("bancos",bancoPage);
         return modelAndView;
     }
-
+    //adicionar novo banco /banco/novo
     @GetMapping("/novo")
     public ModelAndView novo(){
         ModelAndView modelAndView = new ModelAndView("/banco/Novo");
         modelAndView.addObject(new Banco());
         return modelAndView;
     }
+
+    //metodo post recebendo um objeto banco para inserir no banco de dados /banco/new
     @PostMapping("/novo")
     public ModelAndView salvar(RequisicaoBanco requisicaoBanco, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -56,12 +58,14 @@ public class BancoController {
     }
 
 
+
     @GetMapping("/editar")
     public String editar(){
 
         return "Editar";
     }
 
+    //para deletar um banco no banco de dados /id/delete
     @GetMapping("/{id}/delete")
     public String excluir(@PathVariable Integer id){
         try{
@@ -71,6 +75,9 @@ public class BancoController {
             return "redirect:/banco";
         }
     }
+
+
+    //mostrar os detalhes /bancos/id
     @GetMapping("/{id}")
     public ModelAndView show(@PathVariable Integer id){
         Optional<Banco>  optional = this.bancoRepository.findById(id);
@@ -84,6 +91,8 @@ public class BancoController {
             return  new ModelAndView("redirect:/banco");
         }
     }
+
+    //para atualizar /bancos/update/id
     @GetMapping("/update/{id}")
     public ModelAndView update(@PathVariable Integer id, RequisicaoBanco requisicaoBanco,BindingResult bindingResult){
         Optional<Banco> optional = this.bancoRepository.findById(id);
@@ -100,6 +109,7 @@ public class BancoController {
         }
     }
 
+    //retorno do metodo de atualizar /bancos/update/id
     @PostMapping("/update/{id}")
     public ModelAndView update(@PathVariable Integer id, RequisicaoBanco requisicaoBanco){
         Optional<Banco> optional = this.bancoRepository.findById(id);

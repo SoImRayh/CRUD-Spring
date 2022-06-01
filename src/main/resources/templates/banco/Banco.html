@@ -6,23 +6,24 @@
 </head>
 <body>
     <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index', linkTwo = 'agencia')"></sidebar>
-<div class="BankBody">
-    <div>
-        <div>
-            <input type="text">
-            <button type="button">filtrar</button>
+
+    <div class="search-bar">
+        <div class="bar-element">
+            <input type="text" placeholder="filtrar por nome">
+            <button type="text" class="custom-btn btn-16">filtrar</button>
         </div>
-        <div>
-            <a href="#">
-                <button class="button-85" role="button">Proxima</button>
+        <div class="bar-element" th:if="${bancos.number != bancos.totalPages}">
+            <a th:href="@{/banco(page = ${bancos.number+ 1}, size = ${bancos.size})}">
+                <button class="custom-btn btn-16" role="button">Proxima</button>
             </a>
         </div>
-        <div>
-            <a href="#">
-                <button class="button-85" role="button">Anterior</button>
+        <div class="bar-element" th:if="${bancos.number != 0}">
+            <a th:href="@{/banco (size =${bancos.size} , page = ${bancos.number -1})}">
+                <button class="custom-btn btn-16" role="button">Anterior</button>
             </a>
         </div>
     </div>
+<div class="BankBody">
 <div class="div-table">
 
 
@@ -31,11 +32,17 @@
             <tr>
                 <th>Nome</th>
                 <th>Número</th>
+                <th>ações</th>
             </tr>
             <tr th:each="banco : ${bancos}">
                 <td th:text="${banco.getNome()}"></td>
                 <td th:text="${banco.getNumero()}"></td>
+                <td><a th:href="@{/banco/{id}(id = ${banco.getId()})}"><button class="custom-btn btn-16">detalhes</button></a>
+                    <a th:href="@{/banco/update/{id}(id = ${banco.getId()})}"><button class="custom-btn btn-16">Editar</button></a>
+                    <a th:href="@{/banco/{id}/delete(id = ${banco.getId()})}"><button class="custom-btn btn-16">Excluir</button></a>
+                </td>
             </tr>
+
             </tbody>
         </table>
 
