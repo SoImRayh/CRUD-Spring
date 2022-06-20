@@ -7,17 +7,14 @@
 <body>
     <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index',linkTwo = 'banco')"></sidebar>
     <div class="search-bar">
-        <div class="bar-element">
-            <input type="text" placeholder="filtrar">
-        </div>
-        <div class="bar-element">
-            <a href="#"><button class="custom-btn btn-16">filtrar</button> </a>
-        </div>
-        <div class="bar-element">
-            <a href="#"><button class="custom-btn btn-16">prox</button></a>
-        </div>
-        <div class="bar-element">
-            <a href="#"><button class="custom-btn btn-16">anterior</button> </a>
+        <div class="btn-group-sm">
+            <a th:href="@{/agencia/novo}"><button class="btn btn-primary">nova</button></a>
+            <label>
+                <input type="text" placeholder="filtrar" class="form-control ">
+            </label>
+            <a href="#"><button class="btn btn-primary">filtrar</button></a>
+            <a href="#"><button class="btn btn-primary">anterior</button></a>
+            <a href="#"><button class="btn btn-primary">proxima</button></a>
         </div>
     </div>
 <div class="div-table">
@@ -29,6 +26,7 @@
         <th>Endereço</th>
         <th>Fone</th>
         <th>Tipo</th>
+        <th colspan="2">Ações</th>
         </thead>
         <tbody>
             <tr th:each="agencia : ${agencias}">
@@ -38,10 +36,14 @@
                 <td th:text="${agencia.getEndereco()}"></td>
                 <td th:text="${agencia.getFone()}"></td>
                 <td th:text="${agencia.getTipo()}"></td>
-                <td><a th:href="@{/agencia/update/{id}(id = ${agencia.id})}">
-                    <button class="btn btn-sm btn-primary">editar</button>
-                </a> </td>
-                <td><a th:href="@{/agencia/{agenciaId}/delete(agenciaId = ${agencia.id})}"><button class="btn btn-primary">excluir</button> </a></td>
+                <td>
+                    <a th:href="@{/agencia/update/{id}(id = ${agencia.id})}">
+                        <button class="custom-btn btn-16" role="button">editar</button>
+                    </a>
+                    <a th:href="@{/agencia/{agenciaId}/delete(agenciaId = ${agencia.id})}">
+                        <button class="custom-btn btn-16" role="button">excluir</button>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>

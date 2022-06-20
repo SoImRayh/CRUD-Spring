@@ -19,8 +19,8 @@
 }
 
 .search-bar{
-    top: 75px;
-    left: 50%;
+    top: 60px;
+    left: 40%;
     position: fixed;
     flex-wrap: nowrap;
     z-index: 51;

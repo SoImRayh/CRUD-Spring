@@ -13,7 +13,7 @@
         <form method="post" class="form-inline" th:object="${requisicao}"
               th:action="@{/agencia/update/{agenciaId}(agenciaId = ${agenciaid})}">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Banco id" th:field="*{id_banco}">
+                <input type="text" class="form-control" placeholder="Banco id" th:field="*{a}">
                 <input type="text" class="form-control" placeholder="endereço" th:field="*{endereco}">
                 <input type="text" class="form-control" placeholder="fone" th:field="*{fone}">
                 <input type="text" class="form-control" placeholder="tipo" th:field="*{tipo}">

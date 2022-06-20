@@ -6,28 +6,29 @@
           crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>HelloWorld</title>
+    <link rel="stylesheet" th:href="@{/styles/css/components.css}">
     <link rel="stylesheet" href="../../static/styles/css/components.css">
 </head>
 <body>
-<div class="d-flex">
-    <div class="d-flex justify-content-between">
-    <h1 class="">detalhes do banco</h1>
-    <table class="table text-center table-dark justify-content-between">
-        <tr>
-            <th colspan="2" th:text="${banco.getNome()}"></th>
-        </tr>
-        <tr>
-            <th>ID</th>
-            <td th:text="${banco.getId()}"></td>
-        </tr>
-        <tr>
-            <th>Número</th>
-            <td th:text="${banco.getNumero()}"></td>
-        </tr>
-    </table>
+    <div class="bankbody">
+        <div class="">
+            <div class="d-flex justify-content-between">
+            <table class="table text-center table-dark justify-content-between">
+                <tr>
+                    <th colspan="2" th:text="${banco.getNome()}"></th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <td th:text="${banco.getId()}"></td>
+                </tr>
+                <tr>
+                    <th>Número</th>
+                    <td th:text="${banco.getNumero()}"></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <a th:href="@{/banco}"><button class="btn btn-primary btn-lg" type="button">Voltar</button> </a>
     </div>
-
-</div>
-<a th:href="@{/banco}"><button class="btn btn-primary" type="button">Voltar</button> </a>
 </body>
 </html>

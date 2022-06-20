@@ -5,22 +5,26 @@
           rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous">
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/css/components.css}">
+    <link rel="stylesheet" th:href="@{/styles/css/forms.css}">
     <title>HelloWorld</title>
 </head>
 <body>
-<a th:href="@{/banco}"><button class="btn btn-primary">voltar</button></a>
+    <h1 th:text="${bancoId}+'   '+ ${requisicaoBanco.nome} +'   '+${requisicaoBanco.numero}"
+        style="color: #fafafa"><br></h1>
     <div class="user-box">
         <form class="form-inline" method="post" style="margin: 20px" th:object="${requisicaoBanco}"
               th:action="@{/banco/update/{bancoId}(bancoId = ${bancoId})}" >
             <div class="form-group">
                 <input type="text" class="form-control" th:placeholder="nome" th:field="*{nome}">
                 <input type="text" class="form-control" th:placeholder="numero" th:field="*{numero}">
-                <button type="submit" class="btn btn-primary btn-sm">atualizar</button>
+                <button type="submit" class="btn btn-primary">atualizar</button>
+                <div class="btn-group" role="group" aria-label="basic example">
+                    <a th:href="@{/banco}"><button class="btn btn-primary" style="text-decoration:none">voltar</button></a>
+                </div>
             </div>
         </form>
-        <h1 th:text="${bancoId}"><br></h1>
-        <h1 th:text="${requisicaoBanco.nome}"><br></h1>
-        <h1 th:text="${requisicaoBanco.numero}"><br></h1>
+
     </div>
 </body>
 </html>

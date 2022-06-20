@@ -6,7 +6,6 @@
 </head>
 <body>
     <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index', linkTwo = 'agencia')"></sidebar>
-
     <div class="search-bar">
         <div class="bar-element">
             <a th:href="@{/banco/novo}"><button class="custom-btn btn-16">Novo Banco</button> </a>
@@ -15,17 +14,17 @@
             <input type="text" placeholder="filtrar por nome">
             <button type="text" class="custom-btn btn-16">filtrar</button>
         </div>
-        <div class="bar-element" th:if="${bancos.number != bancos.totalPages}">
-            <a th:href="@{/banco(page = ${bancos.number+ 1}, size = ${bancos.size})}">
-                <button class="custom-btn btn-16" role="button">Proxima</button>
-            </a>
-        </div>
         <div class="bar-element" th:if="${bancos.number != 0}">
             <a th:href="@{/banco (size =${bancos.size} , page = ${bancos.number -1})}">
                 <button class="custom-btn btn-16" role="button">Anterior</button>
             </a>
         </div>
-    </div>
+        <div class="bar-element" th:if="${bancos.number != bancos.totalPages}">
+            <a th:href="@{/banco(page = ${bancos.number+ 1}, size = ${bancos.size})}">
+                <button class="custom-btn btn-16" role="button">Proxima</button>
+            </a>
+        </div>
+        </div>
 <div class="BankBody">
 <div class="div-table">
 

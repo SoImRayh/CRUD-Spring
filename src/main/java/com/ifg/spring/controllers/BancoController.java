@@ -2,7 +2,7 @@ package com.ifg.spring.controllers;
 
 import com.ifg.spring.dto.RequisicaoBanco;
 import com.ifg.spring.model.Banco;
-import com.ifg.spring.model.BancoRepository;
+import com.ifg.spring.repository.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;

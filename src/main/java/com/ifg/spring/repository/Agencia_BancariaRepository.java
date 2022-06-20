@@ -1,5 +1,6 @@
-package com.ifg.spring.model;
+package com.ifg.spring.repository;
 
+import com.ifg.spring.model.Agencia_bancaria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
