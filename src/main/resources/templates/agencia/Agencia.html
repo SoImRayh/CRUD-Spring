@@ -7,13 +7,19 @@
 <body>
     <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index',linkTwo = 'banco')"></sidebar>
     <div class="search-bar">
-        <div class="btn-group-sm">
+        <div class="bar-element">
             <a th:href="@{/agencia/novo}"><button class="btn btn-primary">nova</button></a>
-            <label>
-                <input type="text" placeholder="filtrar" class="form-control ">
-            </label>
-            <a href="#"><button class="btn btn-primary">filtrar</button></a>
-            <a href="#"><button class="btn btn-primary">anterior</button></a>
+        </div>
+        <div class="bar-element">
+            <form class="bar-element" method="get" th:object="${filtro}" th:action="@{/agencia}">
+                <input type="text" name="filtro" id="filtro" th:value="${filtro}" required>
+                &nbsp;
+                <button type="text" class="custom-btn btn-16" th:href="@{/agencia(filtro = ${filtro})}">filtrar</button>
+                &nbsp
+            </form>
+        </div>
+
+            <a th:if="${agencias.number > 0}" th:href="@{/agencia(page = ${agencias.number +1})}"><button class="btn btn-primary">anterior</button></a>
             <a href="#"><button class="btn btn-primary">proxima</button></a>
         </div>
     </div>

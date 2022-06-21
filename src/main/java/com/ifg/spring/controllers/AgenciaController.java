@@ -5,12 +5,11 @@ import com.ifg.spring.repository.Agencia_BancariaRepository;
 import com.ifg.spring.model.Agencia_bancaria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -24,9 +23,12 @@ public class AgenciaController {
     private Agencia_BancariaRepository agenciaBancariaRepository;
 
     @GetMapping("")
-    public ModelAndView home(){
+    public ModelAndView home(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size,
+                             @RequestParam(defaultValue = "") String filtro){
+        int currentPage = page.orElse(0);
+        int pagesize = size.orElse(15);
         ModelAndView modelAndView = new ModelAndView("agencia/Agencia");
-        modelAndView.addObject("agencias", this.agenciaBancariaRepository.findAll());
+        modelAndView.addObject("agencias", this.agenciaBancariaRepository.findbyFilter("%"+filtro+"%" , PageRequest.of(currentPage, pagesize)));
         return modelAndView;
     }
 

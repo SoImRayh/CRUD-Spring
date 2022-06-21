@@ -10,15 +10,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name="banco")
 public class Banco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull
     @NotBlank
+    @Column(name = "nome")
     private String nome;
 
     @NotBlank
+    @Column(name = "numero")
     private String numero;
 
     public Banco() {

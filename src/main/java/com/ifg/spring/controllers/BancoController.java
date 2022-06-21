@@ -6,13 +6,16 @@ import com.ifg.spring.repository.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import javax.lang.model.element.ModuleElement;
 import javax.validation.UnexpectedTypeException;
 import java.util.List;
 import java.util.Optional;
@@ -28,14 +31,22 @@ public class BancoController {
     @GetMapping("")
     public ModelAndView banco(Pageable pageable,
                               @RequestParam("page") Optional<Integer> page,
-                              @RequestParam("size") Optional<Integer> size){
+                              @RequestParam("size") Optional<Integer> size,
+                              @RequestParam("filtro")Optional<String> filtro){
+
         int currentPage = page.orElse(0);
-        int pageSize = size.orElse(15) ;
+        int pageSize = size.orElse(20) ;
+        String filter = filtro.orElse("");
+
+        Page<Banco> lista  = this.bancoRepository.searchByFilter("%"+filter+"%",PageRequest.of(currentPage , pageSize));
+        System.out.println("%"+filter+"%");
+
         ModelAndView modelAndView = new ModelAndView("/banco/Banco");
-        Page<Banco> bancoPage = this.bancoRepository.findAll(PageRequest.of(currentPage , pageSize));
-        modelAndView.addObject("bancos",bancoPage);
+        modelAndView.addObject("filtro", new String());
+        modelAndView.addObject("bancos",lista);
         return modelAndView;
     }
+
     //adicionar novo banco /banco/novo
     @GetMapping("/novo")
     public ModelAndView novo(){
