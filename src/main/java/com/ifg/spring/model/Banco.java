@@ -20,7 +20,6 @@ public class Banco {
     @Column(name = "nome")
     private String nome;
 
-    @NotBlank
     @Column(name = "numero")
     private String numero;
 

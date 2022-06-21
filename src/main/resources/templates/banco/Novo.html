@@ -17,7 +17,7 @@
 <h2>Cadastrar novo Banco</h2>
 <form class="form-inline" method="post" style="margin: 20px" th:object="${banco}" th:action="@{/banco/novo}">
     <div class="user-box">
-        <input type="text" class="form-control" placeholder="nome" th:field="*{nome}"/>
+        <input type="text" class="form-control" placeholder="nome" th:field="*{nome}" required/>
     </div>
     <div class="user-box">
         <input type="text" class="form-control" placeholder="numero" th:field="*{numero}"/>
