@@ -39,7 +39,6 @@ public class BancoController {
         String filter = filtro.orElse("");
 
         Page<Banco> lista  = this.bancoRepository.searchByFilter("%"+filter+"%",PageRequest.of(currentPage , pageSize));
-        System.out.println("%"+filter+"%");
 
         ModelAndView modelAndView = new ModelAndView("/banco/Banco");
         modelAndView.addObject("filtro", new String());
@@ -86,7 +85,7 @@ public class BancoController {
             return "redirect:/banco";
         }
     }
-
+//@PathVariable String url
 
     //mostrar os detalhes /bancos/id
     @GetMapping("/{id}")
