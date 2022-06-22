@@ -19,7 +19,7 @@ services:
 
   app:
     container_name: spring
-    build: .
+    image: imrayh/spring
     ports:
       - "8080:8080"
     depends_on:
