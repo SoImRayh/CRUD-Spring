@@ -1,29 +1,81 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="/fragments/start :: startHeader">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/styles/css/components.css}">
     <title>Todos os Bancos</title>
     <script type="text/javascript" th:src="@{/js/cssandjs/actions.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
 </head>
 <body>
-    <sidebar th:insert="/fragments/start :: sidebar(linkOne = 'index', linkTwo = 'agencia')"></sidebar>
+<sidebar class="sidebar" >
+    <div class="logo-content">
+        <div class="logo">
+            <i class='bx bxl-xing'></i>
+            <div class="logo-name">Rayhbank</div>
+        </div>
+        <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav_list">
+        <li>
+            <customButton>
+                <a  th:href="@{/}">
+                    <i class="bx bxs-home"></i>
+                    <span class="links_name">Inicio</span>
+                </a>
+                <span class="tooltip">Inicio</span>
+            </customButton>
+        </li>
+        <li>
+            <customButton>
+                <a th:href="@{/agencia}">
+                    <i class='bx bxl-magento'></i>
+                    <span class="links_name">Agencias</span>
+                </a>
+                <span class="tooltip">Agencias</span>
+            </customButton>
+        </li>
+    </ul>
+    <div class="profile-content">
+        <div class="profile">
+            <div class="profile-details">
+                <a href="https://github.com/SoImRayh/CRUD-Spring">
+                    <i class='bx bxl-github'></i>
+                    <div class="name">Rayh</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+
+        btn.onclick = function (){
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</sidebar>
     <div class="search-bar">
         <div class="bar-element">
-            <a th:href="@{/banco/novo}"><button class="custom-btn btn-16">Novo Banco</button> </a>
+            <a th:href="@{/banco/novo}"><button class="btn btn-primary btn-sm">Novo Banco</button> </a>
         </div>
         <form class="bar-element" method="get" th:object="${filtro}" th:action="@{/banco}">
-            filter : <input type="text" name="filtro" id="filtro" th:value="${filtro}" required>
+            <input class="" type="text" name="filtro" placeholder="filtrar" id="filtro" th:value="${filtro}" required>
             &nbsp;
-            <button type="text" class="custom-btn btn-16" th:href="@{/banco(filtro = ${filtro})}">filtrar</button>
+            <button type="text" class="btn btn-primary btn-sm" th:href="@{/banco(filtro = ${filtro})}">filtrar</button>
             &nbsp;
         </form>
         <div class="bar-element" th:if="${bancos.number != 0}">
             <a th:href="@{/banco (size =${bancos.size} , page = ${bancos.number -1})}">
-                <button class="custom-btn btn-16" role="button">Anterior</button>
+                <button class="btn btn-primary btn-sm" role="button">Anterior</button>
             </a>
         </div>
         <div class="bar-element" th:if="${bancos.number != bancos.totalPages}">
             <a th:href="@{/banco(page = ${bancos.number+ 1}, size = ${bancos.size})}">
-                <button class="custom-btn btn-16" role="button">Proxima</button>
+                <button class="btn btn-primary btn-sm" role="button">Proxima</button>
             </a>
         </div>
         </div>
@@ -53,10 +105,9 @@
 </div>
 </div>
     <div th:if="${bancos.totalPages > 0}" class="pagination" th:each="bancoNumber : ${bancos.number}">
-        <a th:href="@{banco (page = ${bancoNumber} , size = 10)}"
+        <a th:href="@{ (page = ${bancoNumber} , size = 10)}"
            th:text="${bancoNumber}" th:class="${bancoNumber == bancos.number +1} ? active" class="btn btn-info">aaa</a>
     </div>
-<button type="button" th:onclick="showAlert()">aaa</button>
 
 </body>
 </html>

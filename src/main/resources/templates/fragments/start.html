@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/styles/css/components.css}">
 </head>
 <body>
-    <sidebar class="sidebar" th:fragment="sidebar(linkOne,linkTwo)"  >
+    <sidebar class="sidebar" >
     <div class="logo-content">
         <div class="logo">
             <i class='bx bxl-xing'></i>
@@ -16,14 +16,14 @@
     </div>
     <ul class="nav_list">
         <li>
-            <customButton th:if="${linkOne =='banco'}">
+            <customButton>
                 <a th:href="@{/banco}">
                     <i class="bx bxs-bank"></i>
                     <span class="links_name">Bancos</span>
                 </a>
                 <span class="tooltip">Bancos</span>
             </customButton>
-            <customButton th:if="${linkOne == 'index'}">
+            <customButton>
                 <a  th:href="@{/}">
                     <i class="bx bxs-home"></i>
                     <span class="links_name">Inicio</span>
@@ -32,14 +32,14 @@
             </customButton>
         </li>
         <li>
-            <customButton th:if="${linkTwo =='agencia'}">
+            <customButton>
             <a th:href="@{/agencia}">
                 <i class='bx bxl-magento'></i>
                 <span class="links_name">Agencias</span>
             </a>
             <span class="tooltip">Agencias</span>
             </customButton>
-            <customButton th:if="${linkTwo =='banco'}">
+            <customButton >
                 <a th:href="@{/banco}">
                     <i class="bx bxs-bank"></i>
                     <span class="links_name">Bancos</span>

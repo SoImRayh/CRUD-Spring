@@ -6,18 +6,14 @@ import com.ifg.spring.repository.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ModelAndViewDefiningException;
 
-import javax.lang.model.element.ModuleElement;
 import javax.validation.UnexpectedTypeException;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -40,7 +36,7 @@ public class BancoController {
 
         Page<Banco> lista  = this.bancoRepository.searchByFilter("%"+filter+"%",PageRequest.of(currentPage , pageSize));
 
-        ModelAndView modelAndView = new ModelAndView("/banco/Banco");
+        ModelAndView modelAndView = new ModelAndView("banco/Banco");
         modelAndView.addObject("filtro", new String());
         modelAndView.addObject("bancos",lista);
         return modelAndView;
@@ -49,7 +45,7 @@ public class BancoController {
     //adicionar novo banco /banco/novo
     @GetMapping("/novo")
     public ModelAndView novo(){
-        ModelAndView modelAndView = new ModelAndView("/banco/Novo");
+        ModelAndView modelAndView = new ModelAndView("banco/Novo");
         modelAndView.addObject(new Banco());
         return modelAndView;
     }

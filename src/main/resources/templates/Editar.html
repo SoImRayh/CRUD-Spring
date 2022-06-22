@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Banco</title>
-</head>
-<body>
-
-</body>
-</html>
+<form class="bar-element" method="get" th:object="${filtro}" th:action="@{/banco}">
+    filter : <input type="text" name="filtro" id="filtro" th:value="${filtro}" required>
+    &nbsp;
+    <button type="text" class="custom-btn btn-16" th:href="@{/banco(filtro = ${filtro})}">filtrar</button>
+    &nbsp;
+</form>
