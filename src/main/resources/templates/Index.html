@@ -35,6 +35,20 @@
                 <span class="tooltip">Agencias</span>
             </customButton>
         </li>
+        <li>
+            <a th:href="@{/logout}">
+                <i class="bx bx-log-out"></i>
+                <span class="links_name">Sair</span>
+            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${fullName}"></a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+                </div>
+            </div>
+        </li>
     </ul>
     <div class="profile-content">
         <div class="profile">

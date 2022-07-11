@@ -1,6 +1,6 @@
 package com.ifg.spring.model;
 
-import org.apache.catalina.User;
+import com.ifg.spring.model.User;
 
 import javax.persistence.*;
 import java.util.Set;

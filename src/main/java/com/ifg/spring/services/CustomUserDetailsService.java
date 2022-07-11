@@ -35,17 +35,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         user.setEnabled(true);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+        System.out.println(user);
         userRepository.save(user);
     }
 
-    public void saveUser(User user ,String role){
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
-        Role roleUser = roleRepository.findByRole(role);
-        user.setRoles(new HashSet<>(Arrays.asList(roleUser)));
-        userRepository.save(user);
-
-    }
+//    public void saveUser(User user){
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setEnabled(true);
+//        Role roleUser = roleRepository.findByRole(role);
+//        user.setRoles(new HashSet<>(Arrays.asList(roleUser)));
+//        userRepository.save(user);
+//
+//    }
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
         User user =  userRepository.findByEmail(email);

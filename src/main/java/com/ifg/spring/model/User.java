@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user" , schema = "public")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +19,10 @@ public class User {
     private boolean enabled;
 
     @ManyToMany
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id",
+                referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id",
+                        referencedColumnName = "id"))
     private Set<Role> roles;
 
     public User(){

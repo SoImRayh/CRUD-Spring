@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+    <head>
+        <title>Show Note</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="row">
+            <div class="col-xs-8 col-md-8">
+                <h3>
+                    <a href="/notes" class="btn btn-primary"><i class="fas fa-list"></i> Notes</a>
+                </h3>
+                <h2 th:text="${note.title}"></h2>
+                <dl class="list">
+                    <dt>Content</dt>
+                    <dd th:text="${note.content}"></dd>
+                    <dt>Updated</dt>
+                    <dd th:text="${new java.text.SimpleDateFormat('dd MMM yyyy').format(note.updated)}"></dd>
+                </dl>
+                <form action="/notes/delete">
+                    <input type="hidden" name="id" th:value="${note.id}" />
+                    <h2><input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are you sure?');" />
+                        <a th:href="@{'/notes/edit/' + ${note.id}}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a></h2>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

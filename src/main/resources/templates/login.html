@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="default">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+              crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/styles/css/components.css}">
+        <link rel="stylesheet" th:href="@{/styles/css/forms.css}">
+        <link rel="stylesheet" href="/static/styles/css/components.css">
+        <link rel="stylesheet" href="/static/styles/css/forms.css">
+        <title>Login</title>
+    </head>
+    <body class="text-center">
+        <div layout:fragment="content">
+            <div class="login-box">
+                    <form class="form-signin" th:action="@{/login}" method="post">
+                        <h1 class="h3 mb-3 font-weight-normal text-white">Login</h1>
+                        <div th:if="${param.error}">
+                            <span class="text-logout">Invalid email and password.</span>
+                        </div>
+                        <div th:if="${param.logout}">
+                            <span class="text-white">You have been logged out.</span>
+                        </div>
+                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required />
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                        <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+                        <button class="btn btn-success btn-md" th:action="@{/singup}">cadastrar</button>
+                    </form>
+                </div>
+        </div>
+    </body>
+</html>

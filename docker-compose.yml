@@ -1,5 +1,8 @@
-version: '3.5'
-
+version: '2.4'
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
+  SPRING_DATASOURCE_USERNAME: app
+  SPRING_DATASOURCE_PASSWORD: app2022
 services:
   db:
     container_name: postgres
@@ -19,9 +22,12 @@ services:
 
   app:
     container_name: spring
-    image: imrayh/spring
+    image: registry.hub.docker.com/imrayh/spring-final:latest
     ports:
       - "8080:8080"
+    mem_limit: 500M
+    environment:
+      <<: *database-variables
     depends_on:
       - db
 

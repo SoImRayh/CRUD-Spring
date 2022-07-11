@@ -15,6 +15,10 @@
     <description>Spring</description>
     <properties>
         <java.version>11</java.version>
+        <docker.distrolesl.image>gcr.io/distroless/java:11</docker.distrolesl.image>
+        <docker.repo.url>registry.hub.docker.com/imrayh</docker.repo.url>
+        <docker.repo.project>spring-final</docker.repo.project>
+        <docker.image.name>${docker.repo.url}/${docker.repo.project}</docker.image.name>
     </properties>
     <dependencies>
         <dependency>
@@ -81,6 +85,12 @@
             <artifactId>spring-security-crypto</artifactId>
             <version>5.7.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
 
     </dependencies>
 
@@ -89,6 +99,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <image>${docker.distrolesl.image}</image>
+                    </from>
+                    <to>
+                        <image>${docker.image.name}</image>
+                        <tags>
+                            <tag>${project.version}</tag>
+                        </tags>
+                    </to>
+                    <container>
+                        <mainClass>com.ifg.spring.Application</mainClass>
+                    </container>
+                </configuration>
             </plugin>
         </plugins>
     </build>
