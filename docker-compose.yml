@@ -1,8 +1,4 @@
-version: '2.4'
-x-database-variables: &database-variables
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
-  SPRING_DATASOURCE_USERNAME: app
-  SPRING_DATASOURCE_PASSWORD: app2022
+version: "3.3"
 services:
   db:
     container_name: postgres
@@ -11,12 +7,8 @@ services:
     volumes:
       - base_cliente:/var/lib/postgresql/data/pgdata
       - ./initdb:/docker-entrypoint-initdb.d
-    environment:
-      POSTGRES_USER: app
-      POSTGRES_DB: easysell
-      POSTGRES_PASSWORD: app2022
-      PGDATA: /var/lib/postgresql/data/pgdata
-      LANG: pt_BR.utf8
+    env_file:
+      - .env
     ports:
       - "5455:5432"
 
@@ -25,9 +17,10 @@ services:
     image: registry.hub.docker.com/imrayh/spring-final:latest
     ports:
       - "8080:8080"
-    mem_limit: 500M
     environment:
-      <<: *database-variables
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
+      SPRING_DATASOURCE_USERNAME: app
+      SPRING_DATASOURCE_PASSWORD: app2022
     depends_on:
       - db
 

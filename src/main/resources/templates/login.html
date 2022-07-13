@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="default">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
@@ -28,8 +25,10 @@
                         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required />
                         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required />
                         <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
-                        <button class="btn btn-success btn-md" th:action="@{/singup}">cadastrar</button>
                     </form>
+                <form th:action="@{/signup}">
+                    <button class="btn btn-success btn-md" type="submit">cadastrar</button>
+                </form>
                 </div>
         </div>
     </body>
