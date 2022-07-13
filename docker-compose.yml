@@ -1,4 +1,4 @@
-version: "3.3"
+version: "2.4"
 x-database-variables: &database-variables
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
   SPRING_DATASOURCE_USERNAME: app
