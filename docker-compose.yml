@@ -1,12 +1,11 @@
 version: "3.3"
-#x-database-variables: &database-variables
-#  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
-#  SPRING_DATASOURCE_USERNAME: app
-#  SPRING_DATASOURCE_PASSWORD: app2022
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
+  SPRING_DATASOURCE_USERNAME: app
+  SPRING_DATASOURCE_PASSWORD: app2022
 
 services:
   db:
-    container_name: postgres
     image: phdcoder/postgresbr
     restart: always
     volumes:
@@ -16,8 +15,8 @@ services:
       POSTGRES_USER: app
       POSTGRES_DB: easysell
       POSTGRES_PASSWORD: app2022
-      PG_DATA: /var/lib/postgresql/data/pgdata
-      LANG: pt_BR_utf8
+      PGDATA: /var/lib/postgresql/data/pgdata
+      LANG: pt_BR.utf8
     ports:
       - "5455:5432"
 
