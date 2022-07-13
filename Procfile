@@ -1,1 +1,1 @@
-web: java -jar target/MavenSpring-0.0.1-SNAPSHOT.jar
+web: java -jar target/Spring-0.0.1-SNAPSHOT.jar
