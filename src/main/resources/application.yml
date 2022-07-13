@@ -18,24 +18,24 @@
 #spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
 #spring.jpa.hibernate.ddl-auto=update
 #
-
-server:
-  error:
-    include-stacktrace: on_param
-
-spring:
-  application:
-    name: springboot
-  datasource:
-    url: jdbc:postgresql://localhost:5455/easysell
-    username: app
-    password: app2022
-  jpa:
-    properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-    hibernate:
-      ddl-auto: update
-
-  thymeleaf:
-    mode: htm
+#
+#server:
+#  error:
+#    include-stacktrace: on_param
+#
+#spring:
+#  application:
+#    name: springboot
+#  datasource:
+#    url: jdbc:postgresql://localhost:5455/easysell
+#    username: app
+#    password: app2022
+#  jpa:
+#    properties:
+#      hibernate:
+#        enable_lazy_load_no_trans: true
+#    hibernate:
+#      ddl-auto: update
+#
+#  thymeleaf:
+#    mode: htm
