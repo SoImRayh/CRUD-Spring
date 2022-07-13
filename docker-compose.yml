@@ -1,4 +1,9 @@
-version: "3.3"
+version: "2.4"
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
+  SPRING_DATASOURCE_USERNAME: app
+  SPRING_DATASOURCE_PASSWORD: app2022
+
 services:
   db:
     container_name: postgres
@@ -7,8 +12,12 @@ services:
     volumes:
       - base_cliente:/var/lib/postgresql/data/pgdata
       - ./initdb:/docker-entrypoint-initdb.d
-    env_file:
-      - .env
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_DB: easysell
+      POSTGRES_PASSWORD: app2022
+      PG_DATA: /var/lib/postgresql/data/pgdata
+      LANG: pt_BR_utf8
     ports:
       - "5455:5432"
 
@@ -18,9 +27,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/easysell
-      SPRING_DATASOURCE_USERNAME: app
-      SPRING_DATASOURCE_PASSWORD: app2022
+      <<: *database-variables
     depends_on:
       - db
 
